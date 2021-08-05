@@ -14,7 +14,7 @@ import {
   FindCompanyInput,
 } from "../domain/company.schema";
 
-@Resolver()
+@Resolver(() => Company)
 export class CompanyResolver {
   constructor(
     private readonly _companyService: CompanyService,
@@ -36,8 +36,14 @@ export class CompanyResolver {
     return this._companyService.createCompany(company);
   }
 
+  @Mutation(() => Company)
+  async deleteCompany(@Args("input") { _id }: FindCompanyInput) {
+    await this._employeeService.deleteEmployeesFromCompany(_id);
+    return this._companyService.deleteCompany(_id);
+  }
+
   @ResolveField()
-  async employees(@Parent() parent: Company) {
-    return this._employeeService.findByCompanyId(parent._id);
+  async employees(@Parent() company: Company) {
+    return this._employeeService.findByCompanyId(company._id);
   }
 }
