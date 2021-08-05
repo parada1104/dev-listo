@@ -2,6 +2,8 @@ import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { PositionEnum } from './position.enum';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import * as mongoose from 'mongoose';
+import { Company } from '../../company/domain/company.schema';
 
 export type EmployeeDocument = Employee & Document;
 
@@ -18,6 +20,10 @@ export class Employee {
   @Prop({ required: true })
   @Field()
   positionName: PositionEnum;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Company.name })
+  @Field(() => Company)
+  company: Company;
 }
 
 @InputType()
