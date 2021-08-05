@@ -10,7 +10,7 @@ export type CompanyDocument = Company & Document;
 @ObjectType()
 export class Company {
   @Field(() => ID)
-  id: string;
+  _id: string;
 
   @Prop({ required: true })
   @Field()
@@ -24,7 +24,7 @@ export class Company {
   @Field()
   businessArea: string;
 
-  @Prop({ type: mongoose.Types.ObjectId, ref: Employee.name })
+  @Prop({ type: mongoose.Types.ObjectId, ref: "Employee" })
   @Field(() => [Employee])
   employees: Employee[];
 }
@@ -44,7 +44,7 @@ export class CreateCompanyInput {
 @InputType()
 export class FindCompanyInput {
   @Field()
-  id: string;
+  _id: string;
 }
 
 export const CompanySchema = SchemaFactory.createForClass(Company);

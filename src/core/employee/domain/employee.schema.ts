@@ -1,9 +1,9 @@
-import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
-import { PositionEnum } from './position.enum';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import * as mongoose from 'mongoose';
-import { Company } from '../../company/domain/company.schema';
+import { Field, ID, InputType, ObjectType } from "@nestjs/graphql";
+import { PositionEnum } from "./position.enum";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
+import * as mongoose from "mongoose";
+import { Company } from "../../company/domain/company.schema";
 
 export type EmployeeDocument = Employee & Document;
 
@@ -11,7 +11,7 @@ export type EmployeeDocument = Employee & Document;
 @ObjectType()
 export class Employee {
   @Field(() => ID)
-  id: string;
+  _id: string;
 
   @Prop({ required: true })
   @Field()
@@ -21,7 +21,7 @@ export class Employee {
   @Field()
   positionName: PositionEnum;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Company.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Company" })
   @Field(() => Company)
   company: Company;
 }
@@ -33,6 +33,12 @@ export class CreateEmployeeInput {
 
   @Field()
   positionName: PositionEnum;
+}
+
+@InputType()
+export class FindEmployeeInput {
+  @Field()
+  _id: string;
 }
 
 export const EmployeeSchema = SchemaFactory.createForClass(Employee);

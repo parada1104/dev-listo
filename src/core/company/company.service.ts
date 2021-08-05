@@ -14,15 +14,15 @@ export class CompanyService {
     return this._companyModel.find().lean();
   }
 
-  async findById(id: string): Promise<Company> {
+  async findById(id): Promise<Company> {
     return this._companyModel.findById(id).lean();
   }
 
-  async createCompany(company: Company): Promise<Company> {
+  async createCompany(company): Promise<Company> {
     return this._companyModel.create(company);
   }
 
-  async deleteCompany(id: string) {
+  async deleteCompany(id) {
     const result = await this._companyModel.deleteOne({ id: id });
     return result.deletedCount > 0;
   }
