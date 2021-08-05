@@ -7,15 +7,17 @@ import { Configuration } from './config/config.keys';
 import { CompanyModule } from './core/company/company.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { EmployeeModule } from './core/employee/employee.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
     ConfigModule,
     CompanyModule,
+    EmployeeModule,
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
-    EmployeeModule,
+    MongooseModule.forRoot(Configuration.ATLAS_URL),
   ],
   controllers: [AppController],
   providers: [AppService],
