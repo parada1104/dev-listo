@@ -1,8 +1,8 @@
-import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import * as mongoose from 'mongoose';
-import { Employee } from '../../employee/domain/employee.schema';
+import { Field, ID, InputType, ObjectType } from "@nestjs/graphql";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
+import * as mongoose from "mongoose";
+import { Employee } from "../../employee/domain/employee.schema";
 
 export type CompanyDocument = Company & Document;
 
