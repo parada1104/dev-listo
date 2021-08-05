@@ -6,6 +6,7 @@ import { ConfigService } from './config/config.service';
 import { Configuration } from './config/config.keys';
 import { CompanyModule } from './core/company/company.module';
 import { GraphQLModule } from '@nestjs/graphql';
+import { EmployeeModule } from './core/employee/employee.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { GraphQLModule } from '@nestjs/graphql';
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
+    EmployeeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
