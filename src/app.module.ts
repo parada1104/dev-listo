@@ -1,13 +1,12 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from './config/config.module';
-import { ConfigService } from './config/config.service';
-import { Configuration } from './config/config.keys';
-import { CompanyModule } from './core/company/company.module';
-import { GraphQLModule } from '@nestjs/graphql';
-import { EmployeeModule } from './core/employee/employee.module';
-import { MongooseModule } from '@nestjs/mongoose';
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { ConfigModule } from "./config/config.module";
+import { ConfigService } from "./config/config.service";
+import { Configuration } from "./config/config.keys";
+import { CompanyModule } from "./core/company/company.module";
+import { GraphQLModule } from "@nestjs/graphql";
+import { EmployeeModule } from "./core/employee/employee.module";
 
 @Module({
   imports: [
@@ -15,12 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     CompanyModule,
     EmployeeModule,
     GraphQLModule.forRoot({
-      autoSchemaFile: 'schema.gql',
-    }),
-    MongooseModule.forRoot(Configuration.ATLAS_URL, {
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      autoSchemaFile: "schema.gql",
     }),
   ],
   controllers: [AppController],
