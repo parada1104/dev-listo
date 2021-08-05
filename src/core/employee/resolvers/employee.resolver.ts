@@ -15,7 +15,7 @@ import {
 } from "../domain/employee.schema";
 import { Company } from "../../company/domain/company.schema";
 
-@Resolver()
+@Resolver(() => Employee)
 export class EmployeeResolver {
   constructor(
     private readonly _employeeService: EmployeeService,

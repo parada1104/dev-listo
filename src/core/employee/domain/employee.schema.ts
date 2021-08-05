@@ -23,7 +23,7 @@ export class Employee {
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Company" })
   @Field(() => Company)
-  company: Company;
+  company: Company | number;
 }
 
 @InputType()
@@ -33,6 +33,9 @@ export class CreateEmployeeInput {
 
   @Field()
   positionName: PositionEnum;
+
+  @Field()
+  company: string;
 }
 
 @InputType()
