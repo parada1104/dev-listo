@@ -4,9 +4,17 @@ import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { Configuration } from './config/config.keys';
+import { CompanyModule } from './core/company/company.module';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
-  imports: [ConfigModule],
+  imports: [
+    ConfigModule,
+    CompanyModule,
+    GraphQLModule.forRoot({
+      autoSchemaFile: 'schema.gql',
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
